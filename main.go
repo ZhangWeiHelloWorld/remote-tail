@@ -115,6 +115,9 @@ func main() {
 	var wg sync.WaitGroup
 
 	for _, server := range config.Servers {
+		if !server.Enable {
+			continue
+		}
 		wg.Add(1)
 		go func(server command.Server) {
 			defer func() {
@@ -154,11 +157,16 @@ func main() {
 
 				if config.Slient {
 					fmt.Printf("%s -> %s\n", output.Host, content)
-				} else {
+				} else if config.ShowIp {
 					fmt.Printf(
 						"%s %s %s\n",
 						console.ColorfulText(console.TextGreen, output.Host),
 						console.ColorfulText(console.TextYellow, "->"),
+						content,
+					)
+				} else {
+					fmt.Printf(
+						"%s\n",
 						content,
 					)
 				}

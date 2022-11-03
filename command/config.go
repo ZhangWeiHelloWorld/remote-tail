@@ -10,6 +10,8 @@ type Server struct {
 	PrivateKeyPassphrase string `toml:"private_key_passphrase"`
 	TailFile             string `toml:"tail_file"`
 	TailFlags            string `toml:"tail_flags"`
+	Prefix               string `toml:"prefix"`
+	Enable               bool   `toml:"enable"`
 }
 
 type Config struct {
@@ -17,4 +19,5 @@ type Config struct {
 	Servers   map[string]Server `toml:"servers"`
 	Slient    bool              `toml:"slient"`
 	TailFlags string            `toml:"tail_flags"`
+	ShowIp    bool              `toml:"showip"`
 }

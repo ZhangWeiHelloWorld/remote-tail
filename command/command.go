@@ -78,7 +78,7 @@ func (cmd *Command) Execute(output chan Message) {
 		panic(fmt.Sprintf("[%s] redirect stderr failed: %s", cmd.Host, err))
 	}
 
-	go bindOutput(cmd.Host, output, &cmd.Stdout, "", 0)
+	go bindOutput(cmd.Host, output, &cmd.Stdout, cmd.Server.Prefix, 0)
 	go bindOutput(cmd.Host, output, &cmd.Stderr, "Error:", console.TextRed)
 
 	if err = session.Start(cmd.Script); err != nil {
@@ -102,6 +102,7 @@ func bindOutput(host string, output chan Message, input *io.Reader, prefix strin
 			break
 		}
 
+		prefix = console.ColorfulText(console.TextBlue, prefix)
 		line = prefix + line
 		if color != 0 {
 			line = console.ColorfulText(color, line)

@@ -1,10 +1,10 @@
-
 # 全局配置,所有的servers中tail_file配置的默认值
 tail_file="/data/logs/laravel.log"
-
 # 是否是静默模式
 # 静默模式启动时不会输出welcome消息
 slient=false
+# 是否显示服务器ip
+showip=true
 
 # 服务器配置,可以配置多个
 # 如果不提供password,则使用当前用户的ssh公钥(private_key_path=/home/mylxsw/.ssh/id_rsa),建议采用该方式,使用密码方式不安全
@@ -12,20 +12,38 @@ slient=false
 [servers]
 
 [servers.1]
-server_name="测试服务器1"
-hostname="test1.server.aicode.cc"
-user="root"
-tail_file="/var/log/messages"
+enable=false
+server_name="server3"
+#日志前缀
+prefix="[SERVER_GROUP][SERVER3][001] "
+hostname="127.0.0.1"
 port=22
+user="root"
+password="xxxx"
+tail_file="/home/xxxx/application/resin-3.1.12/bin/xxx.log"
+
 
 [servers.2]
-server_name="测试服务器2"
-hostname="test2.server.aicode.cc"
+enable=false
+server_name="server2"
+#日志前缀
+prefix="[SERVER_GROUP][SERVER2][001] "
+hostname="127.0.0.1"
+port=22
 user="root"
-tail_file="/var/log/messages-not-exist"
+password="xxxxx"
+tail_file="/home/xxxx/application/xxxxx/ns.log"
+
 
 [servers.3]
-server_name="测试服务器3"
-hostname="test2.server.aicode.cc"
-user="demo"
-password="123456"
+enable=true
+server_name="server1"
+#日志前缀
+prefix="[SERVER_GROUP][SERVER1][001] "
+hostname="127.0.0.1"
+port=22
+user="root"
+password="xxx"
+tail_file="/home/xxx/logs/xxxx.log"
+
+
