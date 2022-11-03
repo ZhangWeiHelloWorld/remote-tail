@@ -154,10 +154,7 @@ func main() {
 				if content == "" || (strings.HasPrefix(content, "==>") && strings.HasSuffix(content, "<==")) {
 					continue
 				}
-
-				if config.Slient {
-					fmt.Printf("%s -> %s\n", output.Host, content)
-				} else if config.ShowIp {
+				if config.ShowIp {
 					fmt.Printf(
 						"%s %s %s\n",
 						console.ColorfulText(console.TextGreen, output.Host),
