@@ -47,6 +47,11 @@ AB两台服务器中的项目均将日志写到文件系统的`/home/data/logs/l
 
     # 全局配置,所有的servers中tail_file配置的默认值
     tail_file="/data/logs/laravel.log"
+    # 是否是静默模式
+    # 静默模式启动时不会输出welcome消息
+    slient=false
+    # 是否显示服务器ip
+    showip=true
     
     # tail 命令的选项，一般Linux服务器不需要设置此项，采用默认值即可
     # 如果是AIX等服务器，可能tail命令不支持下面这两个选项，可以修改该配置项为 "-f"
@@ -60,21 +65,32 @@ AB两台服务器中的项目均将日志写到文件系统的`/home/data/logs/l
     [servers]
 
     [servers.1]
-    server_name="测试服务器1"
-    hostname="test1.server.aicode.cc"
-    user="root"
-    tail_file="/var/log/messages"
+    #启动当前服务
+    enable=false
+    server_name="server3"
+    #日志前缀
+    prefix="[SERVER_GROUP][SERVER1][001] "
+    hostname="127.0.0.1"
     # 指定ssh端口，不指定的情况下使用默认值22
-    port=2222
+    port=22
+    user="root"
+    password="xxxx"
+    tail_file="/home/xxxx/application/resin-3.1.12/bin/xxx.log"
 
     [servers.2]
+    #启动当前服务
+    enable=true
     server_name="测试服务器2"
+     #日志前缀
+    prefix="[SERVER_GROUP][SERVER2][001] "
     hostname="test2.server.aicode.cc"
     user="root"
     tail_file="/var/log/messages"
     tail_flags="-f"
 
     [servers.3]
+    #启动当前服务
+    enable=true
     server_name="测试服务器3"
     hostname="test2.server.aicode.cc"
     user="demo"
